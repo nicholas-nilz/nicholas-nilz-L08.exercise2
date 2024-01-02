@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="section">
+            <h1>Welcome to our Movie Website</h1>
+            <p>Explore the latest movies, reviews, and trailers.</p>
+        </div>
+
+        <div class="section">
+            <div class="slide">
+                <img src="images/incredibles.jpg" alt="The Incredibles">
+                <p>The Incredibles</p>
+            </div>
+            <div class="slide">
+                <img src="images/monster.jpg" alt="Monsters, Inc.">
+                <p>Monsters Inc.</p>
+            </div>
+            <div class="slide">
+                <img src="images/wreck.jpg" alt="Wreck-It Ralph">
+                <p>Wreck-It Ralph</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1>Contact Us</h1>
+            <p>Have questions or feedback? Reach out to us!</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/fullpage.js/dist/fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script>
+        var spinTitle = anime({
+            targets: '.section.active',
+            translateY: [-100, 0],
+            opacity: [0, 1],
+            easing: 'easeOutExpo',
+            duration: 1500
+        });
+
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#03A9F4', '#2ECC71', '#00BCD4'],
+                navigation: true,
+                navigationPosition: 'right',
+                anchors: ['home', 'movies', 'contact'],
+                afterLoad: function (origin, destination, direction) {
+                    if (destination.index == 1) { // Section 2 (Movies)
+                        spinTitle.restart();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
